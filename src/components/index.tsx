@@ -10,8 +10,8 @@ const formatDate = (date: Date) => {
 export const Index = () => {
   return (
     <>
-      <div className="container mx-auto px-4 py-32">
-        <Link to="/" className="mt-36 font-black text-lg cursor-pointer select-none pr-2 bg-white -mb-4 z-10 relative top-[0.85em]">
+      <div className="container mx-auto px-4 py-36">
+        <Link to="/" className="font-black text-lg cursor-pointer select-none pr-2 bg-white z-10 relative top-[0.9em]">
           SHIFT BLOG.
         </Link>
 

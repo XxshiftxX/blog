@@ -20,7 +20,9 @@ export const Show = () => {
   return (
     <>
       <div className="container mx-auto px-4 py-36">
-        <Link to="/" className='font-black text-lg cursor-pointer select-none'>SHIFT BLOG.</Link>
+        <Link to="/" className='font-black text-lg cursor-pointer select-none'>
+          SHIFT BLOG.
+        </Link>
 
         <h1 className="font-semibold text-4xl mt-8 break-keep">
           {post.title}
