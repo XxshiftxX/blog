@@ -1,9 +1,11 @@
 import ReactMarkdown from "react-markdown";
+import SyntaxHighlighter from "react-syntax-highlighter";
 
 import { allPosts } from "../posts";
 import { useParams } from "react-router";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
 export const Show = () => {
   const { slug } = useParams();
 
@@ -60,7 +62,18 @@ export const Show = () => {
             </>
           },
           pre: ({ ...props }) => <pre className="bg-gray-100 p-6 rounded-md leading-6 text-sm" {...props} />,
-          code: ({ ...props }) => <code className="bg-gray-100 p-1 rounded-md font-mono text-sm" {...props} />,
+          code: ({ inline, ...props }) => {
+            const match = props.className && /language-(\w+)/.exec(props.className);
+            console.log(match?.[1])
+            if (!inline && match) {
+              return <div className="text-sm leading-6">
+                <SyntaxHighlighter language={match[1]} PreTag="div" {...props} style={atomOneLight} customStyle={{ backgroundColor: "transparent" }}>
+                  {String(props.children).replace(/\n$/, '')};
+                </SyntaxHighlighter>
+              </div>
+            }
+            return <code className="bg-gray-100 p-1 rounded-md font-mono text-sm" {...props} />;
+          },
           // Unchecked
           table: ({ ...props }) => <table className="border-collapse border border-gray-300" {...props} />,
           thead: ({ ...props }) => <thead className="border border-gray-300" {...props} />,
