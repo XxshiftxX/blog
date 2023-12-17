@@ -66,13 +66,15 @@ export const Show = () => {
           pre: ({ ...props }) => <pre className="bg-gray-100 p-6 rounded-md leading-6 text-sm" {...props} />,
           code: ({ inline, ...props }) => {
             const match = props.className && /language-(\w+)/.exec(props.className);
-            console.log(match?.[1])
             if (!inline && match) {
               return <div className="text-sm leading-6">
                 <SyntaxHighlighter language={match[1]} PreTag="div" {...props} style={atomOneLight} customStyle={{ backgroundColor: "transparent" }}>
                   {String(props.children).replace(/\n$/, '')};
                 </SyntaxHighlighter>
               </div>
+            }
+            if (!inline) {
+              return <code className="font-mono text-sm" {...props} />;
             }
             return <code className="bg-gray-100 p-1 rounded-md font-mono text-sm" {...props} />;
           },
